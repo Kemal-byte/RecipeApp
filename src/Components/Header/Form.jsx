@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Home from "../../Pages/Home/Home";
 import "./Form.css";
 
-const Form = (props) => {
+const Form = ({ setSetter }) => {
   const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
 
@@ -15,10 +17,12 @@ const Form = (props) => {
   console.log(input);
   console.log(select);
 
-  function handleSubmit() {
-    props.setSetter(input, select);
-    navigate("/home");
-  }
+  // function handleSubmit() {
+  //   // e.preventDefault();
+  //   props.setSetter(input, select);
+  //   console.log("Inside handle submit");
+  //   // navigate("/home");
+  // }
 
   return (
     <>
@@ -26,6 +30,7 @@ const Form = (props) => {
       <h1>Search for a delicious recipe</h1>
       <form
         action="get"
+        method="GET"
         className="d-flex flex-column gap-3 align-items-center recipe--search-bar"
       >
         <input
@@ -42,13 +47,17 @@ const Form = (props) => {
           onChange={(e) => setSelect(e.target.value)}
         >
           <option defaultValue>Open this select menu</option>
-          <option value="1">Breakfeast</option>
-          <option value="2">Lunch</option>
-          <option value="3">Dinner</option>
-          <option value="4">Snack</option>
-          <option value="5">Teatime</option>
+          <option value="Breakfeast">Breakfeast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+          <option value="Teatime">Teatime</option>
         </select>
-        <button className="btn btn-primary search" onClick={handleSubmit}>
+        <button
+          className="btn btn-primary search"
+          type="submit"
+          onSubmit={() => setSetter(input, select)}
+        >
           Search
         </button>
       </form>
