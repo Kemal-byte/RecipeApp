@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Loging = () => {
@@ -9,6 +10,8 @@ const Loging = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
   const url = "https://636a266dc07d8f936d947e88.mockapi.io/api/users";
   const email = document.getElementById("email");
   const password = document.getElementById("password");
@@ -45,6 +48,7 @@ const Loging = () => {
       users.map((user) => {
         if (user.email === email.value && user.password === password.value) {
           console.log("Yes");
+          navigate("/home");
         } else {
           console.log("Incorrect email or password");
         }
