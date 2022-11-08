@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import Loging from "./Pages/Loging/Loging";
+import Login from "./Pages/Login/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <div className="background">
         <article className="main-container">
-          <Loging />
+          <Login />
         </article>
       </div>
     </div>
