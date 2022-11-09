@@ -15,6 +15,7 @@ const Loging = () => {
   const url = "https://636a266dc07d8f936d947e88.mockapi.io/api/users";
   const email = document.getElementById("email");
   const password = document.getElementById("password");
+  console.log(email);
 
   useEffect(() => {
     async function getUser() {
@@ -55,12 +56,14 @@ const Loging = () => {
       });
     } else {
       console.log("It has been posted");
+      email.reset();
       setCreateAcc((prev) => {
         let newUser = { ...prev };
         newUser.email = email.value;
         newUser.password = password.value;
         return { newUser };
       });
+      setAccount(true);
       addUser(createAcc);
     }
   }
