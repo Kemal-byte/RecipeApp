@@ -49,7 +49,6 @@ const Home = () => {
   return (
     <div className="home">
       <main className="py-5 d-flex justify-content-center flex-column align-items-center gap-2">
-        <Navbar />
         <Form setSetter={() => setSetter} />
         <RecipeCard />
       </main>

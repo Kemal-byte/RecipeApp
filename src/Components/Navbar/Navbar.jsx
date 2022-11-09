@@ -9,7 +9,7 @@ const Navbar = () => {
         <li className="nav--item">
           <NavLink
             style={({ isActive }) => ({
-              color: isActive && "red",
+              color: isActive && "#fded0d",
             })}
             to="/"
             className="nav-link"

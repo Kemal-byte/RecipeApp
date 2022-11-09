@@ -2,125 +2,91 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const Loging = () => {
-  const [account, setAccount] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [users, setUsers] = useState({});
-  const [createAcc, setCreateAcc] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
   const url = "https://636a266dc07d8f936d947e88.mockapi.io/api/users";
-  const email = document.getElementById("email");
-  const password = document.getElementById("password");
-  console.log(email);
 
   useEffect(() => {
     async function getUser() {
       const res = await fetch(url);
       const data = await res.json();
       setUsers(data);
-      // console.log(data);
     }
     getUser();
-  }, []);
+  }, [loggedIn]);
   console.log(users);
 
-  // This one is for adding a user to the api
-  const addUser = async (newUser) => {
-    try {
-      await axios.post(url, newUser);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // This will handle whether the user have an account or not. If yes it will check the inputs otherwise it will
-  // make a post request to add user to the api.
-  function handleClick(e) {
-    if (email.value.trim() == "" || password.value.trim() == "") {
-      alert("You cant have empty input fields");
-      return;
-    }
+  // It handle login
+  function handleLogin(e) {
     e.preventDefault();
-    if (account) {
-      users.map((user) => {
-        if (user.email === email.value && user.password === password.value) {
-          console.log("Yes");
-          navigate("/home");
-        } else {
-          console.log("Incorrect email or password");
-        }
-      });
-    } else {
-      console.log("It has been posted");
-      email.reset();
-      setCreateAcc((prev) => {
-        let newUser = { ...prev };
-        newUser.email = email.value;
-        newUser.password = password.value;
-        return { newUser };
-      });
-      setAccount(true);
-      addUser(createAcc);
-    }
+    console.log("Inside the login page, loggedIn is :" + loggedIn);
+    users.map((user) => {
+      // console.log(user.email);
+      // console.log(user.password);
+      if (user.email === email && user.password === password) {
+        console.log("Yes");
+        navigate("/");
+      } else {
+        console.log("Incorrect email or password");
+      }
+    });
+  }
+  // it register the user to API
+  function handleRegister(e) {
+    e.preventDefault();
+    console.log("Inside the REGISTER page, loggedIn is :" + loggedIn);
+    const newUser = { email, password };
+    addNewUser(newUser);
   }
 
+  async function addNewUser(user) {
+    try {
+      await axios.post(url, user);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoggedIn(true);
+  }
   return (
     <div className="container-login">
-      {/* <img
-        src="https://raw.githubusercontent.com/clarusway/clarusway-full-stack-tr-12-22/88c9228d1bc95ff7f74e01944546f59ec93726c0/react/projects/005-Recipe-App/assets/home.svg?token=ATNSJ4AQNNDYRB645SKYAKDDNIREY"
-        alt=""
-      /> */}
-
-      <h3 className="title">{account ? "Welcome" : "Register"}</h3>
-      {account ? (
-        <form action="get" className="form">
-          <input type="email" id="email" placeholder="Email" required />
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-primary px-4"
-            onClick={handleClick}
-          >
-            {account ? "Login" : "Register"}
-          </button>
-        </form>
-      ) : (
-        <form action="post" className="form">
-          <input
+      <h3 className="title">{loggedIn ? "Welcome" : "Register"}</h3>
+      <Form onSubmit={loggedIn ? handleLogin : handleRegister}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
-            id="email"
-            placeholder="Email - register"
-            required
+            placeholder="Enter email"
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            type="pasword"
-            id="password"
-            placeholder="Password"
-            minLength={6}
-            maxLength={12}
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-primary px-4"
-            onClick={handleClick}
-          >
-            {account ? "Login" : "Register"}
-          </button>
-        </form>
-      )}
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-      {account && (
-        <h6 onClick={() => setAccount(false)}>Don't have an account?</h6>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <Button variant="primary w-100" type="submit">
+          Submit
+        </Button>
+      </Form>
+
+      {loggedIn && (
+        <h6 onClick={() => setLoggedIn(false)}>Don't have an account?</h6>
       )}
     </div>
   );

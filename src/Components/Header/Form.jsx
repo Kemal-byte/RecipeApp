@@ -29,7 +29,6 @@ const Form = ({ setSetter }) => {
       <div className="spacer"></div>
       <h1>Search for a delicious recipe</h1>
       <form
-        action="get"
         method="GET"
         className="d-flex flex-column gap-3 align-items-center recipe--search-bar"
       >
@@ -56,7 +55,7 @@ const Form = ({ setSetter }) => {
         <button
           className="btn btn-primary search"
           type="submit"
-          onSubmit={() => setSetter(input, select)}
+          onClick={() => setSetter(input, select)}
         >
           Search
         </button>
