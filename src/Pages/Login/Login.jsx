@@ -28,9 +28,7 @@ const Loging = () => {
   function handleLogin(e) {
     e.preventDefault();
     console.log("Inside the login page, loggedIn is :" + loggedIn);
-    users.map((user) => {
-      // console.log(user.email);
-      // console.log(user.password);
+    users?.map((user) => {
       if (user.email === email && user.password === password) {
         console.log("Yes");
         navigate("/");
