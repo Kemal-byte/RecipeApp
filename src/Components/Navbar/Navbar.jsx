@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ handleuser }) => {
   return (
     <nav>
       <ul className="m-4">
@@ -28,6 +28,19 @@ const Navbar = () => {
             aria-current="page"
           >
             About
+          </NavLink>
+        </li>
+        <li className="nav--item">
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive && "red",
+            })}
+            to="/login"
+            className="nav-link"
+            aria-current="page"
+            onClick={() => handleuser(false)}
+          >
+            Logout
           </NavLink>
         </li>
         <li className="nav--item">Github</li>

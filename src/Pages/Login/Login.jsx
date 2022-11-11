@@ -5,7 +5,7 @@ import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const Loging = () => {
+const Loging = ({ handleuser }) => {
   const [loggedIn, setLoggedIn] = useState(true);
   const [users, setUsers] = useState({});
   const [email, setEmail] = useState("");
@@ -36,6 +36,7 @@ const Loging = () => {
         console.log("Incorrect email or password");
       }
     });
+    handleuser(true);
   }
   // it register the user to API
   function handleRegister(e) {
@@ -54,7 +55,7 @@ const Loging = () => {
     setLoggedIn(true);
   }
   return (
-    <div className="container-login">
+    <div className="container-login p-4">
       <h3 className="title">{loggedIn ? "Welcome" : "Register"}</h3>
       <Form onSubmit={loggedIn ? handleLogin : handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

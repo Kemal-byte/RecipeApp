@@ -12,6 +12,7 @@ ul {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
+  position: relative;
 }
 .nav--item {
   color: #fff;
@@ -21,4 +22,8 @@ ul {
 }
 .nav--item:hover {
   text-decoration: underline;
+}
+ul li:nth-child(3) {
+  position: absolute;
+  left: 20px;
 }

@@ -1,8 +1,12 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import Home from "../Pages/Home/Home";
+import Loging from "../Pages/Login/Login";
 
-const PrivateRouter = () => {
-  return <div>PrivateRouter</div>;
+const PrivateRouter = ({ check }) => {
+  console.log(check);
+
+  return <div>{check ? <Outlet /> : <Navigate to="login" />}</div>;
 };
 
 export default PrivateRouter;

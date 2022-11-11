@@ -12,6 +12,7 @@
   justify-content: center;
   border-radius: 50px;
   background-color: rgb(249, 249, 249);
+  margin-top: 9rem;
 }
 .container-login > img {
   height: 140px;
@@ -33,6 +34,8 @@ input {
   font-weight: 600;
   font-size: 30px;
   letter-spacing: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
 }
 .container-login > h6 {
   font-weight: 300;
