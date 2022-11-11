@@ -36,7 +36,7 @@ const Home = () => {
           setMeals={setMeals}
           getData={getData}
         />
-        <Outlet />
+        <RecipeCard recipe={recipe} />
       </main>
     </div>
   );

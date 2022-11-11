@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React from "react";
 
 const FormRecipe = ({ setSearch, setMeals, getData }) => {
   const mealType = ["Breakfast", "Lunch", "Dinner", "Snack", "Teatime"];
 
   return (
-    <div className="mt-5">
-      <div className="form">
+    <div className="mt-5 w-25" style={{ minWidth: "250px" }}>
+      <div className="form w-100">
         <input
+          className="w-100 px-2 py-1"
           type="text"
+          required
           placeholder="Write something"
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -17,7 +17,7 @@ const FormRecipe = ({ setSearch, setMeals, getData }) => {
           name="foods"
           id="cars"
           onChange={(e) => setMeals(e.target.value)}
-          className="w-100"
+          className="w-100 px-2 py-1"
         >
           {mealType.map((meal, index) => {
             return (
@@ -28,7 +28,7 @@ const FormRecipe = ({ setSearch, setMeals, getData }) => {
           })}
         </select>
         <button className="btn btn-primary w-100" onClick={getData}>
-          aloha
+          Search for a recipe
         </button>
       </div>
     </div>

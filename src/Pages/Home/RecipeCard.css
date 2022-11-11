@@ -1,0 +1,23 @@
+.card {
+  width: 25%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: center;
+  min-width: 200px;
+  flex-shrink: 0;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+.title {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  height: 60px;
+  letter-spacing: normal;
+}
+.image {
+  width: 100%;
+  border-radius: 10px;
+}

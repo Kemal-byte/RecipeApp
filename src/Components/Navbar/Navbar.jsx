@@ -30,18 +30,6 @@ const Navbar = () => {
             About
           </NavLink>
         </li>
-        <li className="nav--item">
-          <NavLink
-            style={({ isActive }) => ({
-              color: isActive && "red",
-            })}
-            to="/details"
-            className="nav-link"
-            aria-current="page"
-          >
-            Details
-          </NavLink>
-        </li>
         <li className="nav--item">Github</li>
       </ul>
       {/* <div className="spacer"></div> */}
